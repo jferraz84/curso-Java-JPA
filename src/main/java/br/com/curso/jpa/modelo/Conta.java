@@ -1,9 +1,12 @@
 package br.com.curso.jpa.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Conta {
@@ -15,6 +18,9 @@ public class Conta {
 	private Integer agencia;
 	private Integer numero;
 	private Double saldo;
+	
+	@OneToMany(mappedBy = "conta")
+	private List<Movimentacao> movimentacoes;
 	
 	public Double getSaldo() {
 		return saldo;
@@ -45,6 +51,9 @@ public class Conta {
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
 	}
 	
 
