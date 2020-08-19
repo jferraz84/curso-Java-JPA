@@ -24,18 +24,20 @@ public class TestaRelacMovCatg {
 		conta.setId(2L);
 
 		Movimentacao mov = new Movimentacao();
-		mov.setDesccricao("Viajem a São Paulo");
+		mov.setData(LocalDateTime.now());
+		mov.setDesccricao("Viajem a Nova York - EUA");
 		mov.setTipoMovimentacao(TipoMovimentacao.SAIDA);
 		mov.setData(LocalDateTime.now());
-		mov.setValor(new BigDecimal(250.0));
+		mov.setValor(new BigDecimal(3250.0));
 		mov.setCategorias(Arrays.asList(catg1, catg2));
 		mov.setConta(conta);
 
 		Movimentacao mov2 = new Movimentacao();
-		mov2.setDesccricao("Viajem ao Rio de Janeiro");
+		mov2.setData(LocalDateTime.now().plusDays(1));
+		mov2.setDesccricao("Viajem a Lisboa - PORT");
 		mov2.setTipoMovimentacao(TipoMovimentacao.SAIDA);
 		mov2.setData(LocalDateTime.now());
-		mov2.setValor(new BigDecimal(350.0));
+		mov2.setValor(new BigDecimal(5250.0));
 		mov2.setCategorias(Arrays.asList(catg1, catg2));
 		mov2.setConta(conta);
 
@@ -49,18 +51,6 @@ public class TestaRelacMovCatg {
 		em.persist(mov2);
 		em.getTransaction().commit();
 		em.close();
-
-//		em.getTransaction().begin();
-//		em.persist(catg1);
-//		em.persist(mov);
-//		em.getTransaction().commit();
-//		em.close();
-//
-//		em.getTransaction().begin();
-//		em.persist(catg2);
-//		em.persist(mov2);
-//		em.getTransaction().commit();
-//		em.close();
 
 	}
 
