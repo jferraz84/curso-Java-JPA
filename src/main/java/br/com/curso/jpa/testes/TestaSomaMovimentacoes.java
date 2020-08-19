@@ -1,11 +1,10 @@
 package br.com.curso.jpa.testes;
 
-import java.math.BigDecimal;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+
+import br.com.curso.jpa.modelo.dao.MovimentacaoDao;
 
 public class TestaSomaMovimentacoes {
 
@@ -14,14 +13,8 @@ public class TestaSomaMovimentacoes {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
 		EntityManager em = emf.createEntityManager();
 		
-		//String jpql = "select sum(m.valor) from Movimentacao m";
-		String jpql = "select avg(m.valor) from Movimentacao m";
-
-		TypedQuery<Double> query = em.createQuery(jpql, Double.class);
-		Double somadasMov = query.getSingleResult();
-		
-		//System.out.println("A soma das movimentações é: " + somadasMov);
-		System.out.println("A médis das movimentações é: " + somadasMov);
+		MovimentacaoDao dao = new MovimentacaoDao(em);
+		System.out.println("A médis das movimentações é: " + dao.getSomaDasMovimentacoes());
 		
 		
 	}
